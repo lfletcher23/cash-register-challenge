@@ -7,33 +7,23 @@ from cash_register import CashGroup, CashRegister, InputNotAllowed, make_registe
 # General utility functions
 #####################################
 
-def add_cash_groups(a: CashGroup, b: CashGroup) -> CashGroup:
-    sum = CashGroup(hundred= a.hundred + b.hundred,
-                    twenty= a.twenty + b.twenty,
-                    ten= a.ten + b.ten,
-                    five= a.five + b.five,
-                    one= a.one + b.one,
-                    quarter= a.quarter + b.quarter,
-                    dime= a.dime + b.dime,
-                    nickel= a.nickel + b.nickel,
-                    penny= a.penny + b.penny)
-    return sum
-
-def subtract_cash_groups(a: CashGroup, b: CashGroup) -> CashGroup:
-    diff = CashGroup(hundred= a.hundred - b.hundred,
-                    twenty= a.twenty - b.twenty,
-                    ten= a.ten - b.ten,
-                    five= a.five - b.five,
-                    one= a.one - b.one,
-                    quarter= a.quarter - b.quarter,
-                    dime= a.dime - b.dime,
-                    nickel= a.nickel - b.nickel,
-                    penny= a.penny - b.penny)
-    return diff
-
 def vector_from_cash_group(c: CashGroup) -> list[int]:
     vector = [c.hundred, c.twenty, c.ten, c.five, c.one, c.quarter, c.dime, c.nickel, c.penny]
     return vector
+
+def add_cash_groups(a: CashGroup, b: CashGroup) -> CashGroup:
+    vector_a = vector_from_cash_group(a)
+    vector_b = vector_from_cash_group(b)
+    vector_sum = [x + y for x, y in zip(vector_a, vector_b)]
+    sum = CashGroup(*vector_sum)
+    return sum
+
+def subtract_cash_groups(a: CashGroup, b: CashGroup) -> CashGroup:
+    vector_a = vector_from_cash_group(a)
+    vector_b = vector_from_cash_group(b)
+    vector_sum = [x - y for x, y in zip(vector_a, vector_b)]
+    diff = CashGroup(*vector_sum)
+    return diff
 
 # Check if any of the values are negative
 def is_non_negative(c: CashGroup) -> bool:
@@ -63,6 +53,8 @@ def cash_groups_are_equal(a: CashGroup, b: CashGroup) -> bool:
 #####################################
 
 # Copy it so we can compare to the original later
+# I prefer creating a new instance of a CashGroup to set as a register value over mutating an existing one,
+# but I decided to let the AI get credit for this approach anyway
 def make_register_from_copy(starting_inventory: CashGroup):
     cash_copy = copy.copy(starting_inventory)
     return make_register(cash_copy)
