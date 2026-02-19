@@ -2,6 +2,8 @@
 
 I thought this was a fun practice problem because although it's pretty simple, there's a surprising amount of potential complexity. I also found that certain AI LLM models struggled with certain aspects of this problem, so I wanted to make sort of a standardized test to compare LLMs on.
 
+For code that I personally wrote (as a human) to solve this, see `solutions/my_solution.py`
+
 ## Problem Requirements
 
 ### Structures and Classes
