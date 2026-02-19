@@ -1,5 +1,7 @@
 # Copied from solutions/placeholders.py
 # Replace this with your actual code
+# For example, you can copy one of the versions from the solutions folder 
+# and paste it here and then try the tests
 
 from dataclasses import dataclass
 
