@@ -1,3 +1,5 @@
+# Type annotation stubs that our tests can use
+
 from dataclasses import dataclass
 
 @dataclass
